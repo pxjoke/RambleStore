@@ -2,10 +2,8 @@ package com.pxjoke.config;
 
 import com.pxjoke.dao.ItemsDAO;
 import oracle.jdbc.pool.OracleDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -17,6 +15,7 @@ public class DAOConfig {
     public ItemsDAO itemsDAO() throws SQLException {
         ItemsDAO itemsDAO = new ItemsDAO();
         itemsDAO.setSearchQuery("select * from items");
+        itemsDAO.setGetByIDQuery("select * from items where id = :ITEM_ID");
         itemsDAO.setDataSource(dataSource());
         return itemsDAO;
     }

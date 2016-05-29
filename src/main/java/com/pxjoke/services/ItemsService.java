@@ -13,8 +13,12 @@ public class ItemsService extends AbstractService<ItemEntity> {
     @Autowired
     private ItemsDAO itemsDAO;
 
-    public final List<ItemEntity> seacrh(){
+    public final List<ItemEntity> search(){
         return itemsDAO.search();
+    }
+
+    public final ItemEntity get(Long id){
+        return itemsDAO.get(id);
     }
 
 }
