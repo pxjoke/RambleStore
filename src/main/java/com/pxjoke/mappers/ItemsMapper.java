@@ -13,12 +13,12 @@ public class ItemsMapper extends AbstractMapper<ItemEntity> {
         final ItemEntity entity = new ItemEntity();
 
         entity.id           = row.getLong  (ItemsTable.ITEM_ID);
-        entity.company      = row.getString(ItemsTable.ITEM_COMPANY);
-        entity.description  = row.getString(ItemsTable.ITEM_DESCRIPTION);
-        entity.release_date = row.getDate  (ItemsTable.ITEM_RELEASE_DATE);
-        entity.title        = row.getString(ItemsTable.ITEM_TITLE);
-        entity.price        = row.getDouble(ItemsTable.ITEM_PRICE);
-        entity.img          = row.getString(ItemsTable.ITEM_IMG);
+        entity.company      = row.getString(ItemsTable.COMPANY);
+        entity.description  = row.getString(ItemsTable.DESCRIPTION);
+        entity.release_date = row.getDate  (ItemsTable.RELEASE_DATE);
+        entity.title        = row.getString(ItemsTable.TITLE);
+        entity.price        = row.getDouble(ItemsTable.PRICE);
+        entity.img          = row.getString(ItemsTable.IMG);
 
         return entity;
     }
