@@ -1,6 +1,7 @@
 package com.pxjoke.config;
 
 import com.pxjoke.dao.ItemsDAO;
+import com.pxjoke.dao.UsersDAO;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,15 @@ public class DAOConfig {
         itemsDAO.setGetByIDQuery("select * from items where id = :ITEM_ID");
         itemsDAO.setDataSource(dataSource());
         return itemsDAO;
+    }
+
+    @Bean
+    public UsersDAO usersDAO() throws SQLException {
+        UsersDAO usersDAO = new UsersDAO();
+        usersDAO.setSearchQuery("select * from users");
+        usersDAO.setGetByIDQuery("select * from users where id = :USER_ID");
+        usersDAO.setDataSource(dataSource());
+        return usersDAO;
     }
 
     @Bean

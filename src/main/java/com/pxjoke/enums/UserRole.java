@@ -1,9 +1,8 @@
 package com.pxjoke.enums;
 
 public enum UserRole {
-    ROLE_USER("ROLE_USER"),
-    ROLE_OPERATOR("ROLE_OPERATOR"),
-    ROLE_ADMINISTRATOR("ROLE_ADMINISTRATOR");
+    USER("user"),
+    ADMIN("admin");
 
     private final String role;
 
