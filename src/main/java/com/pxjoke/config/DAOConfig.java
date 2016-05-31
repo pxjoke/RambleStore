@@ -2,9 +2,11 @@ package com.pxjoke.config;
 
 import com.pxjoke.dao.ItemsDAO;
 import com.pxjoke.dao.UsersDAO;
-import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -30,14 +32,22 @@ public class DAOConfig {
         return usersDAO;
     }
 
-    @Bean
-    DataSource dataSource() throws SQLException {
-        OracleDataSource dataSource = new OracleDataSource();
-        dataSource.setUser("ramble");
-        dataSource.setPassword("!!Gradle89");
-        dataSource.setURL("jdbc:oracle:thin:@127.0.0.1:1521:XE");
-        dataSource.setImplicitCachingEnabled(true);
-        dataSource.setFastConnectionFailoverEnabled(true);
-        return dataSource;
+    @Bean(destroyMethod = "shutdown")
+    public EmbeddedDatabase dataSource() {
+        return new EmbeddedDatabaseBuilder().
+                setType(EmbeddedDatabaseType.H2).
+                addScript("db-schema.sql").
+                addScript("db-data.sql").
+                build();
     }
+//    @Bean
+//    DataSource dataSource() throws SQLException {
+//        OracleDataSource dataSource = new OracleDataSource();
+//        dataSource.setUser("ramble");
+//        dataSource.setPassword("!!Gradle89");
+//        dataSource.setURL("jdbc:oracle:thin:@127.0.0.1:1521:XE");
+//        dataSource.setImplicitCachingEnabled(true);
+//        dataSource.setFastConnectionFailoverEnabled(true);
+//        return dataSource;
+//    }
 }
