@@ -1,6 +1,7 @@
 package com.pxjoke.config;
 
 import com.pxjoke.dao.ItemsDAO;
+import com.pxjoke.dao.OrderPositionsDAO;
 import com.pxjoke.dao.OrdersDAO;
 import com.pxjoke.dao.UsersDAO;
 import org.springframework.context.annotation.Bean;
@@ -74,6 +75,17 @@ public class DAOConfig {
         ordersDAO.setDeleteQuery("DELETE FROM orders where id = :ORDER_ID");
         ordersDAO.setDataSource(dataSource());
         return ordersDAO;
+    }
+
+    @Bean
+    public OrderPositionsDAO orderPositionsDAO() throws SQLException {
+        OrderPositionsDAO orderPositionsDAO = new OrderPositionsDAO();
+        orderPositionsDAO.setSearchQuery("select * from order_position where ORDER_ID = :ORDER_ID");
+        orderPositionsDAO.setCreateQuery("INSERT INTO order_position (ORDER_ID, ITEM_ID, PRICE, AMOUNT) " +
+                "VALUES (:ORDER_ID, :ITEM_ID, :PRICE, :AMOUNT)");
+        orderPositionsDAO.setDeleteQuery("DELETE FROM order_position where id = :ORDER_POSITION_ID");
+        orderPositionsDAO.setDataSource(dataSource());
+        return orderPositionsDAO;
     }
 
     @Bean(destroyMethod = "shutdown")
