@@ -2,7 +2,6 @@ package com.pxjoke.dao;
 
 import com.pxjoke.entities.ItemEntity;
 import com.pxjoke.mappers.ItemsMapper;
-import com.pxjoke.requests.items.CreateItemRequestArguments;
 import com.pxjoke.special.Arguments;
 import com.pxjoke.tables.ItemsTable;
 import org.springframework.beans.factory.annotation.Required;
@@ -12,7 +11,7 @@ import java.util.List;
 public class ItemsDAO extends AbstractDAO<ItemEntity> {
     private String searchQuery;
     private String getByIDQuery;
-    private String createItemQuery;
+    private String createQuery;
 
     public ItemsDAO() {
         super(new ItemsMapper());
@@ -26,17 +25,17 @@ public class ItemsDAO extends AbstractDAO<ItemEntity> {
         return get(getByIDQuery, new Arguments(ItemsTable.ITEM_ID, id));
     }
 
-    public final Long create(final CreateItemRequestArguments itemRequestArguments) {
+    public final Long create(final ItemEntity item) {
         final Arguments arguments = new Arguments();
-        arguments.add(ItemsTable.TITLE,        itemRequestArguments.title);
-        arguments.add(ItemsTable.COMPANY,      itemRequestArguments.company);
-        arguments.add(ItemsTable.DESCRIPTION,  itemRequestArguments.description);
-        arguments.add(ItemsTable.GENRE,        itemRequestArguments.genre);
-        arguments.add(ItemsTable.IMG,          itemRequestArguments.img);
-        arguments.add(ItemsTable.RELEASE_DATE, itemRequestArguments.releaseDate);
-        arguments.add(ItemsTable.PRICE,        itemRequestArguments.price);
+        arguments.add(ItemsTable.TITLE,        item.title);
+        arguments.add(ItemsTable.COMPANY,      item.company);
+        arguments.add(ItemsTable.DESCRIPTION,  item.description);
+        arguments.add(ItemsTable.GENRE,        item.genre);
+        arguments.add(ItemsTable.IMG,          item.img);
+        arguments.add(ItemsTable.RELEASE_DATE, item.release_date);
+        arguments.add(ItemsTable.PRICE,        item.price);
 
-        return insert(createItemQuery, arguments);
+        return insert(createQuery, arguments);
     }
 
     @Required
@@ -50,7 +49,7 @@ public class ItemsDAO extends AbstractDAO<ItemEntity> {
     }
 
     @Required
-    public void setCreateItemQuery(String createItemQuery) {
-        this.createItemQuery = createItemQuery;
+    public void setCreateQuery(String createQuery) {
+        this.createQuery = createQuery;
     }
 }

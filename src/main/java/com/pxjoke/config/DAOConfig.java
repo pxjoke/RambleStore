@@ -19,7 +19,20 @@ public class DAOConfig {
         ItemsDAO itemsDAO = new ItemsDAO();
         itemsDAO.setSearchQuery("select * from items");
         itemsDAO.setGetByIDQuery("select * from items where id = :ITEM_ID");
-        itemsDAO.setCreateItemQuery("");
+        itemsDAO.setCreateQuery("INSERT INTO ITEMS (TITLE,\n" +
+                "                   COMPANY,\n" +
+                "                   DESCRIPTION,\n" +
+                "                   GENRE,\n" +
+                "                   IMG,\n" +
+                "                   PRICE,\n" +
+                "                   RELEASE_DATE)\n" +
+                "    VALUES (:TITLE,\n" +
+                "            :COMPANY,\n" +
+                "            :DESCRIPTION,\n" +
+                "            :GENRE,\n" +
+                "            :IMG,\n" +
+                "            :PRICE,\n" +
+                "            :RELEASE_DATE)");
         itemsDAO.setDataSource(dataSource());
         return itemsDAO;
     }
@@ -30,7 +43,12 @@ public class DAOConfig {
         usersDAO.setSearchQuery("select * from users");
         usersDAO.setGetByIDQuery("select * from users where id = :USER_ID");
         usersDAO.setCreateQuery("INSERT INTO users (EMAIL, PASSWORD, ROLE) " +
-                "VALUES (:EMAIL, :PASSWORD, 'USER')");
+                "VALUES (:EMAIL, :PASSWORD, 'user')");
+        usersDAO.setDeleteQuery("DELETE FROM users where id = :USER_ID");
+        usersDAO.setUpdateQuery("UPDATE users SET " +
+                "PASSWORD = :PASSWORD, " +
+                "ROLE = :ROLE " +
+                "WHERE ID = :USER_ID");
         usersDAO.setDataSource(dataSource());
         return usersDAO;
     }

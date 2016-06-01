@@ -9,7 +9,7 @@ public class ItemEntity extends AbstractEntity{
     public String img;
     public String genre;
     public Double price;
-    public Date   release_date;
+    public Date release_date;
 
     @Override
     public String toString() {

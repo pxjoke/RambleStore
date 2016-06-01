@@ -8,6 +8,7 @@ public class UserEntity extends AbstractEntity {
     public String eMail;
     public String password;
     public UserRole role;
+//    public String role;
 
     @Override
     public String toString() {

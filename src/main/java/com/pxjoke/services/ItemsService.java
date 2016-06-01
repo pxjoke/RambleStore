@@ -22,8 +22,8 @@ public class ItemsService extends AbstractService<ItemEntity> {
         return itemsDAO.get(id);
     }
 
-    public final Long create(final CreateItemRequestArguments itemRequestArguments){
-        return itemsDAO.create(itemRequestArguments);
+    public final Long create(final ItemEntity item){
+        return itemsDAO.create(item);
     }
 
 }

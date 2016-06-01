@@ -17,6 +17,7 @@ public class ItemsMapper extends AbstractMapper<ItemEntity> {
         entity.description  = row.getString(ItemsTable.DESCRIPTION);
         entity.release_date = row.getDate  (ItemsTable.RELEASE_DATE);
         entity.title        = row.getString(ItemsTable.TITLE);
+        entity.genre        = row.getString(ItemsTable.GENRE);
         entity.price        = row.getDouble(ItemsTable.PRICE);
         entity.img          = row.getString(ItemsTable.IMG);
 

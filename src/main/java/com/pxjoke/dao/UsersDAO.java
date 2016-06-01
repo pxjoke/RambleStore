@@ -16,6 +16,8 @@ public class UsersDAO extends AbstractDAO<UserEntity> {
     private String searchQuery;
     private String getByIDQuery;
     private String createQuery;
+    private String deleteQuery;
+    private String updateQuery;
 
     public UsersDAO() {
         super(new UsersMapper());
@@ -38,6 +40,20 @@ public class UsersDAO extends AbstractDAO<UserEntity> {
         return insert(createQuery, arguments);
     }
 
+    public final Boolean delete(final Long id) {
+        return update(deleteQuery, new Arguments(UsersTable.USER_ID, id));
+    }
+
+    public final Boolean update(Long id, UserEntity user) {
+        final Arguments arguments = new Arguments();
+
+        arguments.add(UsersTable.USER_ID,  id);
+        arguments.add(UsersTable.PASSWORD, user.password);
+        arguments.add(UsersTable.ROLE,     user.role.toString());
+
+        return update(updateQuery, arguments);
+    }
+
     @Required
     public void setSearchQuery(String searchQuery) {
         this.searchQuery = searchQuery;
@@ -51,6 +67,16 @@ public class UsersDAO extends AbstractDAO<UserEntity> {
     @Required
     public void setCreateQuery(String createQuery) {
         this.createQuery = createQuery;
+    }
+
+    @Required
+    public void setDeleteQuery(String deleteQuery) {
+        this.deleteQuery = deleteQuery;
+    }
+
+    @Required
+    public void setUpdateQuery(String updateQuery) {
+        this.updateQuery = updateQuery;
     }
 
 

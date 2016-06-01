@@ -16,6 +16,7 @@ public class UsersMapper extends AbstractMapper<UserEntity> {
         entity.eMail    = row.getString(UsersTable.EMAIL);
         entity.password = row.getString(UsersTable.PASSWORD);
         entity.role     = row.getEnum(UsersTable.ROLE, UserRole.class);
+//        entity.role     = row.getString(UsersTable.ROLE);
 
         return entity;
     }

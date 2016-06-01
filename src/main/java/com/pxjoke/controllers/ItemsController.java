@@ -26,8 +26,8 @@ public class ItemsController extends AbstractController<ItemEntity> {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Result<Long> create(@RequestBody final CreateItemRequestArguments itemRequestArguments) {
-        return run(() -> itemsService.create(itemRequestArguments));
+    public Result<Long> create(@RequestBody final ItemEntity item) {
+        return run(() -> itemsService.create(item));
     }
 
 }

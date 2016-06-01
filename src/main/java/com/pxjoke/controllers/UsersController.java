@@ -31,4 +31,14 @@ public class UsersController extends AbstractController<UserEntity>{
         return run(()->usersService.create(user));
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public Result<Boolean> delete(@PathVariable Long id){
+        return run(() -> usersService.delete(id));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Result<Boolean> update(@PathVariable Long id, @RequestBody UserEntity user){
+        return run(() -> usersService.update(id, user));
+    }
+
 }
