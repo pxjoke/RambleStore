@@ -1,6 +1,7 @@
 package com.pxjoke.config;
 
 import com.pxjoke.dao.ItemsDAO;
+import com.pxjoke.dao.OrdersDAO;
 import com.pxjoke.dao.UsersDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -61,6 +62,18 @@ public class DAOConfig {
                 "WHERE ID = :USER_ID");
         usersDAO.setDataSource(dataSource());
         return usersDAO;
+    }
+
+    @Bean
+    public OrdersDAO ordersDAO() throws SQLException {
+        OrdersDAO ordersDAO = new OrdersDAO();
+        ordersDAO.setSearchQuery("select * from orders");
+        ordersDAO.setGetByIDQuery("select * from orders where id = :ORDER_ID");
+        ordersDAO.setCreateQuery("INSERT INTO orders (USER_ID, SALE_DATE) " +
+                  "VALUES (:USER_ID, :SALE_DATE)");
+        ordersDAO.setDeleteQuery("DELETE FROM orders where id = :ORDER_ID");
+        ordersDAO.setDataSource(dataSource());
+        return ordersDAO;
     }
 
     @Bean(destroyMethod = "shutdown")
