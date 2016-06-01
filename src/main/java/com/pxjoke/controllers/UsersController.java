@@ -5,9 +5,7 @@ import com.pxjoke.entities.UserEntity;
 import com.pxjoke.services.ItemsService;
 import com.pxjoke.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +24,11 @@ public class UsersController extends AbstractController<UserEntity>{
     @RequestMapping(value = "/{id}")
     public Result<UserEntity> get(@PathVariable Long id){
         return run(() -> usersService.get(id));
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Result<Long> create(@RequestBody UserEntity user) {
+        return run(()->usersService.create(user));
     }
 
 }

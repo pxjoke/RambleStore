@@ -19,6 +19,7 @@ public class DAOConfig {
         ItemsDAO itemsDAO = new ItemsDAO();
         itemsDAO.setSearchQuery("select * from items");
         itemsDAO.setGetByIDQuery("select * from items where id = :ITEM_ID");
+        itemsDAO.setCreateItemQuery("");
         itemsDAO.setDataSource(dataSource());
         return itemsDAO;
     }
@@ -28,6 +29,8 @@ public class DAOConfig {
         UsersDAO usersDAO = new UsersDAO();
         usersDAO.setSearchQuery("select * from users");
         usersDAO.setGetByIDQuery("select * from users where id = :USER_ID");
+        usersDAO.setCreateQuery("INSERT INTO users (EMAIL, PASSWORD, ROLE) " +
+                "VALUES (:EMAIL, :PASSWORD, 'USER')");
         usersDAO.setDataSource(dataSource());
         return usersDAO;
     }

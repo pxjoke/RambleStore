@@ -23,4 +23,9 @@ public class UsersService extends AbstractService<UserEntity> {
         return usersDAO.get(id);
     }
 
+    public final Long create(UserEntity user) {
+        return usersDAO.create(user);
+    }
+
+
 }
