@@ -30,4 +30,14 @@ public class ItemsController extends AbstractController<ItemEntity> {
         return run(() -> itemsService.create(item));
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public Result<Boolean> delete(@PathVariable Long id){
+        return run(() -> itemsService.delete(id));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Result<Boolean> update(@PathVariable Long id, @RequestBody ItemEntity item){
+        return run(() -> itemsService.update(id, item));
+    }
+
 }

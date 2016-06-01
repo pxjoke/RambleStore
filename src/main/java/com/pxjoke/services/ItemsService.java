@@ -26,4 +26,12 @@ public class ItemsService extends AbstractService<ItemEntity> {
         return itemsDAO.create(item);
     }
 
+    public final Boolean delete(Long id) {
+        return itemsDAO.delete(id);
+    }
+
+    public final Boolean update(Long id, ItemEntity item) {
+        return itemsDAO.update(id, item);
+    }
+
 }

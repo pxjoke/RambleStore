@@ -33,7 +33,17 @@ public class DAOConfig {
                 "            :IMG,\n" +
                 "            :PRICE,\n" +
                 "            :RELEASE_DATE)");
+        itemsDAO.setUpdateQuery("UPDATE items SET " +
+                "                TITLE        = :TITLE,\n" +
+                "                COMPANY      = :COMPANY,\n" +
+                "                DESCRIPTION  = :DESCRIPTION,\n" +
+                "                GENRE        = :GENRE,\n" +
+                "                IMG          = :IMG,\n" +
+                "                PRICE        = :PRICE,\n" +
+                "                RELEASE_DATE = :RELEASE_DATE\n" +
+                "                WHERE ID = :ITEM_ID");
         itemsDAO.setDataSource(dataSource());
+        itemsDAO.setDeleteQuery("DELETE FROM items where id = :ITEM_ID");
         return itemsDAO;
     }
 
