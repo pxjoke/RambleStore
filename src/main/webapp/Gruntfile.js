@@ -6,9 +6,9 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
-
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 module.exports = function (grunt) {
-
+  grunt.loadNpmTasks('grunt-connect-proxy');
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -75,11 +75,34 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+       proxies: [
+          {
+            context: '/',
+            host: 'localhost',
+            port: 8096,
+            changeOrigin: true
+          }
+        ],
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
+          // middleware: function (connect) {
+          //   return [
+          //     connect.static('.tmp'),
+          //     connect().use(
+          //       '/bower_components',
+          //       connect.static('./bower_components')
+          //     ),
+          //     connect().use(
+          //       '/app/styles',
+          //       connect.static('./app/styles')
+          //     ),
+          //     connect.static(appConfig.app),
+          //     proxySnippet
+          //   ];
+          // }
+          middleware: function (connect, options) {
+            var middlewares = [
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -91,7 +114,22 @@ module.exports = function (grunt) {
               ),
               connect.static(appConfig.app)
             ];
-          }
+
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
+
+            // Setup the proxy
+            middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+            // Serve static files
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+
+            return middlewares;
+          
+        }
         }
       },
       test: {
@@ -437,6 +475,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'postcss:server',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
