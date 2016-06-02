@@ -1,7 +1,9 @@
 package com.pxjoke.controllers;
 
 import com.pxjoke.entities.OrderEntity;
+import com.pxjoke.entities.OrderPositionEntity;
 import com.pxjoke.entities.UserEntity;
+import com.pxjoke.services.OrderPositionsService;
 import com.pxjoke.services.OrdersService;
 import com.pxjoke.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class AccountController extends AbstractController<UserEntity>{
     @Autowired
     OrdersService ordersService;
 
+    @Autowired
+    OrderPositionsService orderPositionsService;
+
     @RequestMapping()
     public Result<UserEntity> getUser(){
         return run(() -> usersService.getForAccount());
@@ -35,8 +40,8 @@ public class AccountController extends AbstractController<UserEntity>{
     }
 
     @RequestMapping(value = "/cart")
-    public Result<OrderEntity> getCart(){
-        return run(() -> ordersService.getCart());
+    public Result<List<OrderPositionEntity>> getCart(){
+        return run(() -> orderPositionsService.searchForCart());
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.PUT)

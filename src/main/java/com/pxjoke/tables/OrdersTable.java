@@ -1,7 +1,7 @@
 package com.pxjoke.tables;
 
 public enum OrdersTable implements AbstractTable {
-    ORDER_ID("id"),
+    ORDER_ID("orders.id"),
     USER_ID("user_id"),
     SALE_DATE("sale_date"),
     STATUS("status");

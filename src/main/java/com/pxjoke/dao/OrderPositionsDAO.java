@@ -6,6 +6,7 @@ import com.pxjoke.mappers.OrderPositionMapper;
 import com.pxjoke.mappers.UsersMapper;
 import com.pxjoke.special.Arguments;
 import com.pxjoke.tables.OrderPositionTable;
+import com.pxjoke.tables.OrdersTable;
 import com.pxjoke.tables.UsersTable;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -15,6 +16,8 @@ public class OrderPositionsDAO extends AbstractDAO<OrderPositionEntity> {
     private String searchQuery;
     private String createQuery;
     private String deleteQuery;
+    private String searchForCartQuery;
+    private String addToCartQuery;
 
     public OrderPositionsDAO() {
         super(new OrderPositionMapper());
@@ -22,6 +25,18 @@ public class OrderPositionsDAO extends AbstractDAO<OrderPositionEntity> {
 
     public final List<OrderPositionEntity> search(final Long id){
         return search(searchQuery, new Arguments(OrderPositionTable.ORDER_ID, id));
+    }
+
+    public final List<OrderPositionEntity> searchForCart(final Long userID){
+        return search(searchForCartQuery, new Arguments(UsersTable.USER_ID, userID));
+    }
+
+    public final Long addToCart(Long userID, Long itemID) {
+        final Arguments arguments = new Arguments();
+        arguments.add(OrdersTable.USER_ID,         userID);
+        arguments.add(OrderPositionTable.ITEM_ID,  itemID);
+
+        return insert(addToCartQuery, arguments);
     }
 
     public final Long create(Long orderID, OrderPositionEntity orderPosition) {
@@ -51,6 +66,16 @@ public class OrderPositionsDAO extends AbstractDAO<OrderPositionEntity> {
     @Required
     public void setDeleteQuery(String deleteQuery) {
         this.deleteQuery = deleteQuery;
+    }
+
+    @Required
+    public void setSearchForCartQuery(String searchForCartQuery) {
+        this.searchForCartQuery = searchForCartQuery;
+    }
+
+    @Required
+    public void setAddToCartQuery(String addToCartQuery) {
+        this.addToCartQuery = addToCartQuery;
     }
 
 }

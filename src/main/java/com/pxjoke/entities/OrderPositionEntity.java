@@ -3,10 +3,11 @@ package com.pxjoke.entities;
 import java.util.Date;
 
 public class OrderPositionEntity extends AbstractEntity{
-    public Long orderID;
-    public Long itemID;
-    public Long amount;
-    public Double price;
+    public Long       orderID;
+    public Long       itemID;
+    public Long       amount;
+    public Double     price;
+    public ItemEntity item;
 
     @Override
     public String toString() {
@@ -15,6 +16,7 @@ public class OrderPositionEntity extends AbstractEntity{
                 ", itemID=" + itemID +
                 ", amount=" + amount +
                 ", price=" + price +
-                "} " + super.toString();
+                ", item=" + item.toString() +
+                '}';
     }
 }

@@ -3,6 +3,7 @@ package com.pxjoke.controllers;
 import com.pxjoke.entities.ItemEntity;
 import com.pxjoke.requests.items.CreateItemRequestArguments;
 import com.pxjoke.services.ItemsService;
+import com.pxjoke.services.OrderPositionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,9 @@ public class ItemsController extends AbstractController<ItemEntity> {
 
     @Autowired
     ItemsService itemsService;
+
+    @Autowired
+    OrderPositionsService orderPositionsService;
 
     @RequestMapping
     public Result<List<ItemEntity>> search() {
@@ -38,6 +42,11 @@ public class ItemsController extends AbstractController<ItemEntity> {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Result<Boolean> update(@PathVariable Long id, @RequestBody ItemEntity item){
         return run(() -> itemsService.update(id, item));
+    }
+
+    @RequestMapping(value = "/{id}/addToCart", method = RequestMethod.POST)
+    public Result<Long> addToCart(@PathVariable Long id) {
+        return run(() -> orderPositionsService.addToCart(id));
     }
 
 }

@@ -85,9 +85,21 @@ public class DAOConfig {
     @Bean
     public OrderPositionsDAO orderPositionsDAO() throws SQLException {
         OrderPositionsDAO orderPositionsDAO = new OrderPositionsDAO();
-        orderPositionsDAO.setSearchQuery("select * from order_position where ORDER_ID = :ORDER_ID");
+        orderPositionsDAO.setSearchQuery("select * from order_position " +
+                "JOIN items ON ITEM_ID = items.id " +
+                " where ORDER_ID = :ORDER_ID");
+        orderPositionsDAO.setSearchForCartQuery("select * from order_position " +
+                "JOIN items ON ITEM_ID = items.id " +
+                "JOIN orders ON ORDER_ID = orders.id " +
+                " where orders.USER_ID = :USER_ID and orders.status = 'cart'");
         orderPositionsDAO.setCreateQuery("INSERT INTO order_position (ORDER_ID, ITEM_ID, PRICE, AMOUNT) " +
                 "VALUES (:ORDER_ID, :ITEM_ID, :PRICE, :AMOUNT)");
+        orderPositionsDAO.setAddToCartQuery("INSERT INTO order_position (ORDER_ID, ITEM_ID, PRICE, AMOUNT) " +
+                "VALUES ( " +
+                "(select orders.id from orders where status = 'cart' and USER_ID = :USER_ID), " +
+                " :ITEM_ID, " +
+                "(select items.price from items where items.id = :ITEM_ID), " +
+                "1 )");
         orderPositionsDAO.setDeleteQuery("DELETE FROM order_position where id = :ORDER_POSITION_ID");
         orderPositionsDAO.setDataSource(dataSource());
         return orderPositionsDAO;

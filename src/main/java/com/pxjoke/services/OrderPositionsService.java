@@ -17,12 +17,22 @@ public class OrderPositionsService extends AbstractService<OrderPositionEntity> 
         return orderPositionsDAO.search(id);
     }
 
+    public final List<OrderPositionEntity> searchForCart(){
+        Long userID = new Long(1);
+        return orderPositionsDAO.searchForCart(userID);
+    }
+
     public final Boolean delete(final Long id) {
         return orderPositionsDAO.delete(id);
     }
 
     public final Long create(Long orderID, OrderPositionEntity orderPosition) {
         return orderPositionsDAO.create(orderID, orderPosition);
+    }
+
+    public final Long addToCart(Long itemID) {
+        Long userID = new Long(1);
+        return orderPositionsDAO.addToCart(userID, itemID);
     }
 
 

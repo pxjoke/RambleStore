@@ -1,7 +1,7 @@
 package com.pxjoke.tables;
 
 public enum UsersTable implements AbstractTable {
-    USER_ID("id"),
+    USER_ID("users.id"),
     EMAIL("email"),
     PASSWORD("password"),
     ROLE("role");

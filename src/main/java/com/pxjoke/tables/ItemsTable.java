@@ -1,7 +1,7 @@
 package com.pxjoke.tables;
 
 public enum ItemsTable implements AbstractTable {
-    ITEM_ID("id"),
+    ITEM_ID("items.id"),
     RELEASE_DATE("release_date"),
     GENRE("genre"),
     DESCRIPTION("description"),
