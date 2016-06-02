@@ -5,8 +5,8 @@ CREATE TABLE items (
   release_date DATE   DEFAULT now(),
   price        NUMBER DEFAULT 0,
   company      VARCHAR2(100),
-  img          VARCHAR2(100),
-  description VARCHAR2(300)
+  img          VARCHAR2(500),
+  description VARCHAR2(500)
 );
 
 CREATE TABLE users (

@@ -29,6 +29,7 @@ angular.module('rambleApp')
         that.itemID,
         function (data) {
           console.log("Added to cart");
+          $location.url("/cart");
         },
         function (data) {
           console.log("Error " + data);

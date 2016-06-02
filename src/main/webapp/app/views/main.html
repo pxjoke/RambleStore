@@ -2,7 +2,7 @@
 
 
 
-  <div class="col-md-9">
+  <div class="col-md-10 col-md-offset-1">
 
     <div class="row carousel-holder">
 
@@ -15,13 +15,13 @@
           </ol>
           <div class="carousel-inner">
             <div class="item active">
-              <img class="slide-image" src="http://placehold.it/800x300" alt="">
+              <img class="slide-image" src="http://houseofgeekery.files.wordpress.com/2013/02/skyrim.jpg" alt="">
             </div>
             <div class="item">
-              <img class="slide-image" src="http://placehold.it/800x300" alt="">
+              <img class="slide-image" src="http://i.imgur.com/u1qmhum.jpg" alt="">
             </div>
             <div class="item">
-              <img class="slide-image" src="http://placehold.it/800x300" alt="">
+              <img class="slide-image" src="http://www.blog.alosmandos.net/wp-content/uploads/2012/03/mass_effect_shepard_destruccion.jpg" alt="">
             </div>
           </div>
           <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -39,7 +39,7 @@
 
       <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="item in main.items">
         <div class="thumbnail">
-          <img src="http://placehold.it/320x150" alt="">
+          <img src="{{item.img}}" width = "320px" heihth = "150px" alt="">
           <div class="caption">
             <h4 class="pull-right">${{item.price}}</h4>
             <h4><a ng-href="#/items/{{item.id}}">{{item.title}}</a></h4>
@@ -60,13 +60,5 @@
     </div>
   </div>
 
-  <div class="col-md-3">
-    <p class="lead">Shop Name</p>
-    <div class="list-group">
-      <a href="#" class="list-group-item">Category 1</a>
-      <a href="#" class="list-group-item">Category 2</a>
-      <a href="#" class="list-group-item">Category 3</a>
-    </div>
-  </div>
 
 </div>
