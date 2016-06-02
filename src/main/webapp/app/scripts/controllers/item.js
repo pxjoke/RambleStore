@@ -24,6 +24,18 @@ angular.module('rambleApp')
         });
     };
 
+    that.addToCart = function () {
+      Items.addToCart(
+        that.itemID,
+        function (data) {
+          console.log("Added to cart");
+        },
+        function (data) {
+          console.log("Error " + data);
+          console.dir(data);
+        });
+    };
+
     Items.getItem(that.itemID, function (data) {
       that.item = data;
     }, function (data) {

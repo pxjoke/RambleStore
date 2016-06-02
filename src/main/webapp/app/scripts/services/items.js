@@ -24,6 +24,9 @@ angular.module('rambleApp')
       },
       delete: function (itemID, onSucess, onError){
         return Network.sendDelete("/items/" + itemID, {}, onSucess, onError);
-      }
+      },
+      addToCart: function (itemID, onSucess, onError){
+        return Network.sendPost("/items/" + itemID + "/addToCart", {}, onSucess, onError);
+      }      
     };
   });

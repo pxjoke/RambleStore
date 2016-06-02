@@ -44,7 +44,7 @@
 
 
         <div class="btn-toolbar" role="group">
-          <button class="btn btn-success">Buy for ${{item.item.price}}</button>
+          <button class="btn btn-success" ng-click="item.addToCart(item.item.id)">Add to cart ${{item.item.price}}</button>
           <a class="btn btn-danger" ng-click="item.delete()"><span class="glyphicon glyphicon-remove"></span></a>
           <a class="btn btn-warning" ng-href="#/edit-item/{{item.item.id}}"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
