@@ -11,8 +11,8 @@ angular.module('rambleApp')
   .controller('CreateItemCtrl', function (Items) {
     var that = this;
     that.item = {};
-    
-    that.createItem = function () {
+
+    that.Item = function () {
       Items.create(that.item, function (data) {
         console.log("New item created");
         console.dir(data);
@@ -21,9 +21,6 @@ angular.module('rambleApp')
         console.dir(data);
       })
     };
-
-
-
 
 
   });

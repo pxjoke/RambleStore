@@ -65,6 +65,11 @@ angular
         controller: 'CreateItemCtrl',
         controllerAs: 'createItem'
       })
+      .when('/edit-item/:itemID', {
+        templateUrl: 'views/edit-item.html',
+        controller: 'EditItemCtrl',
+        controllerAs: 'editItem'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -18,6 +18,9 @@ angular.module('rambleApp')
       },
       create: function (item, onSucess, onError){
         return Network.sendPost("/items/", item, onSucess, onError);
-      }      
+      },
+      edit: function (itemID, item, onSucess, onError){
+        return Network.sendPut("/items/" + itemID, item, onSucess, onError);
+      }
     };
   });

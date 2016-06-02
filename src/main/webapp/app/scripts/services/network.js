@@ -42,7 +42,11 @@ angular.module('rambleApp')
       },
       sendDelete: function (url, parameters, onSuccess, onError) {
         sendQuery(url, "DELETE", parameters, {}, onSuccess, onError);
+      },
+      sendPut: function (url, parameters, onSuccess, onError) {
+        sendQuery(url, "PUT", parameters, {}, onSuccess, onError);
       }
+
 
     };
   });
