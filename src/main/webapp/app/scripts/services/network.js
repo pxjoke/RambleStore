@@ -11,7 +11,7 @@ angular.module('rambleApp')
   .service('Network', function ($http) {
 
     function getRequest(method, url, parameters, headers) {
-      return ((method === "GET") ? $http({
+      return ((method === "GET" || method === "DELETE") ? $http({
         method: method,
         url: url,
         params: parameters,
@@ -22,7 +22,11 @@ angular.module('rambleApp')
     var sendQuery = function (url, method, parameters, headers, onSuccess, onError) {
       getRequest(method, url, parameters, headers).then(
         function (response) {
-          onSuccess(response.data.payload);
+          if (response.data.status === "ERROR") {
+            onError(response.message);
+            return;
+          }
+            onSuccess(response.data.payload);
         },
         function (response) {
           onError(response);
@@ -35,6 +39,10 @@ angular.module('rambleApp')
       },
       sendPost: function (url, parameters, onSuccess, onError) {
         sendQuery(url, "POST", parameters, {}, onSuccess, onError);
+      },
+      sendDelete: function (url, parameters, onSuccess, onError) {
+        sendQuery(url, "DELETE", parameters, {}, onSuccess, onError);
       }
+
     };
   });

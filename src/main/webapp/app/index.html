@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -44,6 +45,9 @@
             </li>
             <li>
               <a href="#">Contact</a>
+            </li>
+            <li>
+              <a ng-href="#/users">Users</a>
             </li>
           </ul>
         </div>
@@ -86,6 +90,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -98,6 +103,9 @@
         <script src="scripts/services/network.js"></script>
         <script src="scripts/services/items.js"></script>
         <script src="scripts/controllers/item.js"></script>
+        <script src="scripts/controllers/users.js"></script>
+        <script src="scripts/services/users.js"></script>
+        <script src="scripts/controllers/user.js"></script>
         <!-- endbuild -->
 </body>
 </html>

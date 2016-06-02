@@ -20,26 +20,27 @@
 
     <div class="col-md-4">
 
-      <h3>{{item.item.title}}</h3>
-      <p>{{item.item.description}}</p>
+      <h3>Short Announce</h3>
+      <p>{{item.item.description}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, corporis doloremque
+        explicabo laboriosam odit praesentium saepe? Aut beatae blanditiis consequuntur culpa, doloremque, harum, odit quae quia rem reprehenderit tenetur vel.</p>
       <h3>Game Details</h3>
 
       <div class="panel panel-info">
       <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item">
-            <span class="label label-info">Company</span> <spa> : </spa> <span class="label label-default">{{item.item.company}}</span>
+            <span class="label label-info">Company</span> <span> : </span> <span class="label label-default">{{item.item.company}}</span>
           </li>
           <li class="list-group-item">
-            <span class="label label-info">Release Date</span> <spa> : </spa> <span class="label label-default">{{item.item.release_date}}</span>
+            <span class="label label-info">Release Date</span> <span> : </span> <span class="label label-default">{{item.item.release_date}}</span>
           </li>
           <li class="list-group-item">
-            <span class="label label-info">Genre</span> <spa> : </spa> <span class="label label-default">{{item.item.genre}}</span>
+            <span class="label label-info">Genre</span> <span> : </span> <span class="label label-default">{{item.item.genre}}</span>
           </li>
 
         </ul>
       </div>
-      <div class="panel-footer"><span class=" label label-danger">Cost</span></div>
+      <div class="panel-footer clearfix"><button class="btn btn-success pull-right">Buy for ${{item.item.price}}</button></div>
       </div>
     </div>
 
