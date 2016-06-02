@@ -70,7 +70,13 @@ public class DAOConfig {
         OrdersDAO ordersDAO = new OrdersDAO();
         ordersDAO.setSearchQuery("select * from orders");
         ordersDAO.setGetByIDQuery("select * from orders where id = :ORDER_ID");
-        ordersDAO.setGetCartQuery("select * from orders where status = 'cart' and USER_ID = :USER_ID");
+        ordersDAO.setGetCartQuery("select orders.*, " +
+                "SUM(positions.price) sum, " +
+                "COUNT(positions.id) count " +
+                "from orders " +
+                "JOIN order_position positions" +
+                " ON positions.ORDER_ID = orders.id " +
+                " where status = 'cart' and USER_ID = :USER_ID");
         ordersDAO.setCloseCartQuery("UPDATE orders SET status = 'paid' where status = 'cart' and USER_ID = :USER_ID");
         ordersDAO.setSearchForAccountQuery("select * from orders where USER_ID = :USER_ID");
         ordersDAO.setCreateQuery("INSERT INTO orders (USER_ID, SALE_DATE, STATUS) " +

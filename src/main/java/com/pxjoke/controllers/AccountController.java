@@ -39,13 +39,20 @@ public class AccountController extends AbstractController<UserEntity>{
         return run(() -> ordersService.searchForAccount());
     }
 
-    @RequestMapping(value = "/cart")
-    public Result<List<OrderPositionEntity>> getCart(){
+    @RequestMapping(value = "/cart/positions")
+    public Result<List<OrderPositionEntity>> getCartPositions(){
         return run(() -> orderPositionsService.searchForCart());
+    }
+
+    @RequestMapping(value = "/cart")
+    public Result<OrderEntity> getCart(){
+        return run(() -> ordersService.getCart());
     }
 
     @RequestMapping(value = "/cart", method = RequestMethod.PUT)
     public Result<Boolean> closeCart(){
         return run(() -> ordersService.closeCart());
     }
+
+
 }

@@ -8,6 +8,8 @@ public class OrderEntity extends AbstractEntity{
     public Long userID;
     public Date saleDate;
     public OrderStatus status;
+    public Double sum;
+    public Long count;
 
     @Override
     public String toString() {
@@ -15,6 +17,8 @@ public class OrderEntity extends AbstractEntity{
                 "userID=" + userID +
                 ", saleDate=" + saleDate +
                 ", status=" + status +
-                '}';
+                ", sum=" + sum +
+                ", count=" + count +
+                "}\n";
     }
 }

@@ -4,7 +4,9 @@ public enum OrdersTable implements AbstractTable {
     ORDER_ID("orders.id"),
     USER_ID("user_id"),
     SALE_DATE("sale_date"),
-    STATUS("status");
+    STATUS("status"),
+    COUNT("count"),
+    SUM("sum");
 
 
     private final String columnName;
