@@ -3,7 +3,8 @@ package com.pxjoke.tables;
 public enum OrdersTable implements AbstractTable {
     ORDER_ID("id"),
     USER_ID("user_id"),
-    SALE_DATE("sale_date");
+    SALE_DATE("sale_date"),
+    STATUS("status");
 
 
     private final String columnName;

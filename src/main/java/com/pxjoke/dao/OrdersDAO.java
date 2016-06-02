@@ -17,6 +17,9 @@ public class OrdersDAO extends AbstractDAO<OrderEntity> {
     private String createQuery;
     private String deleteQuery;
     private String searchForAccountQuery;
+    private String getCartQuery;
+    private String closeCartQuery;
+    private String createCartQuery;
 
     public OrdersDAO() {
         super(new OrdersMapper());
@@ -34,12 +37,27 @@ public class OrdersDAO extends AbstractDAO<OrderEntity> {
         return get(getByIDQuery, new Arguments(OrdersTable.ORDER_ID, id));
     }
 
+    public final OrderEntity getCart(Long userID){
+        return get(getCartQuery, new Arguments(OrdersTable.USER_ID, userID));
+    }
+
+    public final boolean closeCart(Long userID){
+        return update(closeCartQuery, new Arguments(OrdersTable.USER_ID, userID));
+    }
+
     public final Long create(OrderEntity order) {
         final Arguments arguments = new Arguments();
         arguments.add(OrdersTable.USER_ID,    order.userID);
         arguments.add(OrdersTable.SALE_DATE,  order.saleDate);
 
         return insert(createQuery, arguments);
+    }
+
+    public final Long createCart(Long userID) {
+        final Arguments arguments = new Arguments();
+        arguments.add(OrdersTable.USER_ID,    userID);
+
+        return insert(createCartQuery, arguments);
     }
 
     public final Boolean delete(final Long id) {
@@ -69,6 +87,21 @@ public class OrdersDAO extends AbstractDAO<OrderEntity> {
     @Required
     public void setSearchForAccountQuery(String searchForAccountQuery) {
         this.searchForAccountQuery = searchForAccountQuery;
+    }
+
+    @Required
+    public void setGetCartQuery(String getCartQuery) {
+        this.getCartQuery = getCartQuery;
+    }
+
+    @Required
+    public void setCloseCartQuery(String closeCartQuery) {
+        this.closeCartQuery = closeCartQuery;
+    }
+
+    @Required
+    public void setCreateCartQuery(String createCartQuery) {
+        this.createCartQuery = createCartQuery;
     }
 
 

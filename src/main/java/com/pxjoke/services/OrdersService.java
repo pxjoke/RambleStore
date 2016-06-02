@@ -27,6 +27,16 @@ public class OrdersService extends AbstractService<OrderEntity> {
         return ordersDAO.get(id);
     }
 
+    public final OrderEntity getCart(){
+        final Long userID = new Long(1);
+        return ordersDAO.getCart(userID);
+    }
+
+    public final boolean closeCart(){
+        final Long userID = new Long(1);
+        return  ordersDAO.closeCart(userID) && ordersDAO.createCart(userID) > 0;
+    }
+
     public final Boolean delete(Long id) {
         return ordersDAO.delete(id);
     }

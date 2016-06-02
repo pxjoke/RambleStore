@@ -33,4 +33,14 @@ public class AccountController extends AbstractController<UserEntity>{
     public Result<List<OrderEntity>> searchOrders(){
         return run(() -> ordersService.searchForAccount());
     }
+
+    @RequestMapping(value = "/cart")
+    public Result<OrderEntity> getCart(){
+        return run(() -> ordersService.getCart());
+    }
+
+    @RequestMapping(value = "/cart", method = RequestMethod.PUT)
+    public Result<Boolean> closeCart(){
+        return run(() -> ordersService.closeCart());
+    }
 }

@@ -70,9 +70,13 @@ public class DAOConfig {
         OrdersDAO ordersDAO = new OrdersDAO();
         ordersDAO.setSearchQuery("select * from orders");
         ordersDAO.setGetByIDQuery("select * from orders where id = :ORDER_ID");
+        ordersDAO.setGetCartQuery("select * from orders where status = 'cart' and USER_ID = :USER_ID");
+        ordersDAO.setCloseCartQuery("UPDATE orders SET status = 'paid' where status = 'cart' and USER_ID = :USER_ID");
         ordersDAO.setSearchForAccountQuery("select * from orders where USER_ID = :USER_ID");
-        ordersDAO.setCreateQuery("INSERT INTO orders (USER_ID, SALE_DATE) " +
-                  "VALUES (:USER_ID, :SALE_DATE)");
+        ordersDAO.setCreateQuery("INSERT INTO orders (USER_ID, SALE_DATE, STATUS) " +
+                  "VALUES (:USER_ID, :SALE_DATE, 'cart')");
+        ordersDAO.setCreateCartQuery("INSERT INTO orders (USER_ID, SALE_DATE, STATUS) " +
+                "VALUES (:USER_ID, now(), 'cart')");
         ordersDAO.setDeleteQuery("DELETE FROM orders where id = :ORDER_ID");
         ordersDAO.setDataSource(dataSource());
         return ordersDAO;
