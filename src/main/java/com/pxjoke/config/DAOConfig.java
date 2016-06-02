@@ -61,6 +61,8 @@ public class DAOConfig {
                 "PASSWORD = :PASSWORD, " +
                 "ROLE = :ROLE " +
                 "WHERE ID = :USER_ID");
+        usersDAO.setLoginQuery("SELECT * FROM users where " +
+                "EMAIL = :EMAIL AND PASSWORD = :PASSWORD");
         usersDAO.setDataSource(dataSource());
         return usersDAO;
     }

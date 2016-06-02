@@ -4,6 +4,7 @@ import com.pxjoke.dao.ItemsDAO;
 import com.pxjoke.dao.UsersDAO;
 import com.pxjoke.entities.ItemEntity;
 import com.pxjoke.entities.UserEntity;
+import com.pxjoke.utilities.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class UsersService extends AbstractService<UserEntity> {
     }
 
     public final UserEntity getForAccount(){
-        final Long id = new Long(1);
+        final Long id = Session.userID;
 
         return usersDAO.get(id);
     }
@@ -35,6 +36,13 @@ public class UsersService extends AbstractService<UserEntity> {
 
     public final Boolean update(Long id, UserEntity user) {
         return usersDAO.update(id, user);
+    }
+
+    public final UserEntity login(String eMail, String password) {
+        UserEntity user = usersDAO.login(eMail, password);
+        if (user != null)
+            Session.userID = user.id;
+        return user;
     }
 
     public final Boolean updateForAccount(UserEntity user) {

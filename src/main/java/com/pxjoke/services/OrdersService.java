@@ -3,6 +3,7 @@ package com.pxjoke.services;
 import com.pxjoke.dao.OrdersDAO;
 import com.pxjoke.entities.OrderEntity;
 import com.pxjoke.entities.UserEntity;
+import com.pxjoke.utilities.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class OrdersService extends AbstractService<OrderEntity> {
     }
 
     public final List<OrderEntity> searchForAccount(){
-        final Long userID = new Long(1);
+        final Long userID = Session.userID;
         return ordersDAO.searchForAccount(userID);
     }
 
@@ -28,12 +29,12 @@ public class OrdersService extends AbstractService<OrderEntity> {
     }
 
     public final OrderEntity getCart(){
-        final Long userID = new Long(1);
+        final Long userID = Session.userID;
         return ordersDAO.getCart(userID);
     }
 
     public final boolean closeCart(){
-        final Long userID = new Long(1);
+        final Long userID = Session.userID;
         return  ordersDAO.closeCart(userID) && ordersDAO.createCart(userID) > 0;
     }
 

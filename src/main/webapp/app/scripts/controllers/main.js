@@ -8,7 +8,8 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('MainCtrl', function (Items) {
+  .controller('MainCtrl', function (Items, $cookies) {
+    $cookies.put('userID', 1);
     var that = this;
     that.items = null;
 

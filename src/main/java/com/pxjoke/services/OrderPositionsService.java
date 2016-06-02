@@ -2,6 +2,7 @@ package com.pxjoke.services;
 
 import com.pxjoke.dao.OrderPositionsDAO;
 import com.pxjoke.entities.OrderPositionEntity;
+import com.pxjoke.utilities.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class OrderPositionsService extends AbstractService<OrderPositionEntity> 
     }
 
     public final List<OrderPositionEntity> searchForCart(){
-        Long userID = new Long(1);
+        Long userID = Session.userID;
         return orderPositionsDAO.searchForCart(userID);
     }
 
@@ -31,7 +32,7 @@ public class OrderPositionsService extends AbstractService<OrderPositionEntity> 
     }
 
     public final Long addToCart(Long itemID) {
-        Long userID = new Long(1);
+        Long userID = Session.userID;
         return orderPositionsDAO.addToCart(userID, itemID);
     }
 

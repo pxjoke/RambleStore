@@ -41,4 +41,9 @@ public class UsersController extends AbstractController<UserEntity>{
         return run(() -> usersService.update(id, user));
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result<UserEntity> login(@RequestBody UserEntity user) {
+        return run(()->usersService.login(user.eMail, user.password));
+    }
+
 }

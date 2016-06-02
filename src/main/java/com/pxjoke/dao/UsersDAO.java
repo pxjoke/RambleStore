@@ -18,6 +18,7 @@ public class UsersDAO extends AbstractDAO<UserEntity> {
     private String createQuery;
     private String deleteQuery;
     private String updateQuery;
+    private String loginQuery;
 
     public UsersDAO() {
         super(new UsersMapper());
@@ -29,6 +30,15 @@ public class UsersDAO extends AbstractDAO<UserEntity> {
 
     public final UserEntity get(Long id){
         return get(getByIDQuery, new Arguments(UsersTable.USER_ID, id));
+    }
+
+    public final UserEntity login(String eMail, String password){
+        final Arguments arguments = new Arguments();
+
+        arguments.add(UsersTable.EMAIL,    eMail);
+        arguments.add(UsersTable.PASSWORD, password);
+
+        return get(loginQuery, arguments);
     }
 
     public final Long create(UserEntity user) {
@@ -77,6 +87,11 @@ public class UsersDAO extends AbstractDAO<UserEntity> {
     @Required
     public void setUpdateQuery(String updateQuery) {
         this.updateQuery = updateQuery;
+    }
+
+    @Required
+    public void setLoginQuery(String loginQuery) {
+        this.loginQuery = loginQuery;
     }
 
 
