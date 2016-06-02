@@ -8,10 +8,16 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('CartCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CartCtrl', function (account) {
+    var that = this;
+    
+    account.getCart(
+      function (data) {
+        that.cart = data;
+      },
+      function (data) {
+        console.log("Error while getting cart");
+        console.dir(data);
+      });
+    
   });
