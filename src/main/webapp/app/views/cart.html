@@ -1,11 +1,15 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Your Cart <div class="btn btn-success">Buy</div> </h1>
+    <h1 class="page-header">Your Cart
+      <div ng-if="cart.cart.count !== 0" class="btn btn-success" ng-click="cart.closeCart()">
+        Buy {{cart.cart.count}} items for ${{cart.cart.sum}}
+      </div>
+    </h1>
 
   </div>
 </div>
 
-<div class="row" ng-repeat="orderPosition in cart.cart">
+<div class="row" ng-repeat="cartPosition in cart.cartPositions">
   <div class="col-md-12">
     <div class="well clearfix">
       <div class="col-md-2">
@@ -13,14 +17,16 @@
       </div>
       <div class="col-md-8">
         <div class="row">
-          <h3>{{orderPosition.item.title}} <small>{{orderPosition.item.genre}}</small></h3>
+          <h3>{{cartPosition.item.title}}
+            <small>{{cartPosition.item.genre}}</small>
+          </h3>
         </div>
         <div class="row">
-          <p>{{orderPosition.item.description}}</p>
+          <p>{{cartPosition.item.description}}</p>
         </div>
       </div>
       <div class="col-md-2">
-        <p class="badge cart-price">${{orderPosition.item.price}}</p>
+        <p class="badge cart-price">${{cartPosition.item.price}}</p>
       </div>
     </div>
   </div>
