@@ -60,6 +60,11 @@ angular
         controller: 'CartCtrl',
         controllerAs: 'cart'
       })
+      .when('/create-item', {
+        templateUrl: 'views/create-item.html',
+        controller: 'CreateItemCtrl',
+        controllerAs: 'createItem'
+      })
       .otherwise({
         redirectTo: '/'
       });
