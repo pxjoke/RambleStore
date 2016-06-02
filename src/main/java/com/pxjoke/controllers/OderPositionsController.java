@@ -14,16 +14,6 @@ public class OderPositionsController extends AbstractController<OrderPositionEnt
     @Autowired
     OrderPositionsService orderPositionsService;
 
-    @RequestMapping(value = "/{id}")
-    public Result<List<OrderPositionEntity>> search(@PathVariable Long id){
-        return run(() -> orderPositionsService.search(id));
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public Result<Long> create(@RequestBody OrderPositionEntity orderPosition) {
-        return run(()->orderPositionsService.create(orderPosition));
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Result<Boolean> delete(@PathVariable Long id){
         return run(() -> orderPositionsService.delete(id));

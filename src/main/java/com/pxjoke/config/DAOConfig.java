@@ -70,6 +70,7 @@ public class DAOConfig {
         OrdersDAO ordersDAO = new OrdersDAO();
         ordersDAO.setSearchQuery("select * from orders");
         ordersDAO.setGetByIDQuery("select * from orders where id = :ORDER_ID");
+        ordersDAO.setSearchForAccountQuery("select * from orders where USER_ID = :USER_ID");
         ordersDAO.setCreateQuery("INSERT INTO orders (USER_ID, SALE_DATE) " +
                   "VALUES (:USER_ID, :SALE_DATE)");
         ordersDAO.setDeleteQuery("DELETE FROM orders where id = :ORDER_ID");

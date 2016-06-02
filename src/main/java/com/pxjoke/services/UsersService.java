@@ -23,11 +23,23 @@ public class UsersService extends AbstractService<UserEntity> {
         return usersDAO.get(id);
     }
 
+    public final UserEntity getForAccount(){
+        final Long id = new Long(1);
+
+        return usersDAO.get(id);
+    }
+
     public final Boolean delete(Long id) {
         return usersDAO.delete(id);
     }
 
     public final Boolean update(Long id, UserEntity user) {
+        return usersDAO.update(id, user);
+    }
+
+    public final Boolean updateForAccount(UserEntity user) {
+        Long id = new Long(1);
+
         return usersDAO.update(id, user);
     }
 

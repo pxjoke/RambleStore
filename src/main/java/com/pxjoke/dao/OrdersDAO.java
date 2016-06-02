@@ -16,6 +16,7 @@ public class OrdersDAO extends AbstractDAO<OrderEntity> {
     private String getByIDQuery;
     private String createQuery;
     private String deleteQuery;
+    private String searchForAccountQuery;
 
     public OrdersDAO() {
         super(new OrdersMapper());
@@ -23,6 +24,10 @@ public class OrdersDAO extends AbstractDAO<OrderEntity> {
 
     public final List<OrderEntity> search(){
         return search(searchQuery, null);
+    }
+
+    public final List<OrderEntity> searchForAccount(Long userID){
+        return search(searchForAccountQuery, new Arguments(OrdersTable.USER_ID, userID));
     }
 
     public final OrderEntity get(Long id){
@@ -59,6 +64,11 @@ public class OrdersDAO extends AbstractDAO<OrderEntity> {
     @Required
     public void setDeleteQuery(String deleteQuery) {
         this.deleteQuery = deleteQuery;
+    }
+
+    @Required
+    public void setSearchForAccountQuery(String searchForAccountQuery) {
+        this.searchForAccountQuery = searchForAccountQuery;
     }
 
 

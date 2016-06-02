@@ -24,9 +24,9 @@ public class OrderPositionsDAO extends AbstractDAO<OrderPositionEntity> {
         return search(searchQuery, new Arguments(OrderPositionTable.ORDER_ID, id));
     }
 
-    public final Long create(OrderPositionEntity orderPosition) {
+    public final Long create(Long orderID, OrderPositionEntity orderPosition) {
         final Arguments arguments = new Arguments();
-        arguments.add(OrderPositionTable.ORDER_ID, orderPosition.orderID);
+        arguments.add(OrderPositionTable.ORDER_ID, orderID);
         arguments.add(OrderPositionTable.ITEM_ID,  orderPosition.itemID);
         arguments.add(OrderPositionTable.PRICE,    orderPosition.price);
         arguments.add(OrderPositionTable.AMOUNT,   orderPosition.amount);

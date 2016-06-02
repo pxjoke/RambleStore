@@ -18,6 +18,11 @@ public class OrdersService extends AbstractService<OrderEntity> {
         return ordersDAO.search();
     }
 
+    public final List<OrderEntity> searchForAccount(){
+        final Long userID = new Long(1);
+        return ordersDAO.searchForAccount(userID);
+    }
+
     public final OrderEntity get(Long id){
         return ordersDAO.get(id);
     }

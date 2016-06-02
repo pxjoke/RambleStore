@@ -21,8 +21,8 @@ public class OrderPositionsService extends AbstractService<OrderPositionEntity> 
         return orderPositionsDAO.delete(id);
     }
 
-    public final Long create(OrderPositionEntity orderPosition) {
-        return orderPositionsDAO.create(orderPosition);
+    public final Long create(Long orderID, OrderPositionEntity orderPosition) {
+        return orderPositionsDAO.create(orderID, orderPosition);
     }
 
 
