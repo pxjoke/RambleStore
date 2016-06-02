@@ -8,10 +8,16 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function (Items) {
+    var that = this;
+    that.items = null;
+
+    Items.search({},
+      function (data) {
+        that.items = data;
+        console.log(data);
+      },
+      function (data) {
+        console.log("Error, while loading data");
+      })
   });
