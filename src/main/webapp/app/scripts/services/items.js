@@ -15,6 +15,15 @@ angular.module('rambleApp')
       },
       getItem: function (itemID, onSucess, onError){
         return Network.sendGet("/items/" + itemID, {}, onSucess, onError);
+      },
+      create: function (item, onSucess, onError){
+        return Network.sendPost("/items/", item, onSucess, onError);
+      },
+      edit: function (itemID, item, onSucess, onError){
+        return Network.sendPut("/items/" + itemID, item, onSucess, onError);
+      },
+      delete: function (itemID, onSucess, onError){
+        return Network.sendDelete("/items/" + itemID, {}, onSucess, onError);
       }
     };
   });

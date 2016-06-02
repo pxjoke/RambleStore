@@ -55,6 +55,21 @@ angular
         controller: 'UserCtrl',
         controllerAs: 'user'
       })
+      .when('/cart', {
+        templateUrl: 'views/cart.html',
+        controller: 'CartCtrl',
+        controllerAs: 'cart'
+      })
+      .when('/create-item', {
+        templateUrl: 'views/create-item.html',
+        controller: 'CreateItemCtrl',
+        controllerAs: 'createItem'
+      })
+      .when('/edit-item/:itemID', {
+        templateUrl: 'views/edit-item.html',
+        controller: 'EditItemCtrl',
+        controllerAs: 'editItem'
+      })
       .otherwise({
         redirectTo: '/'
       });
