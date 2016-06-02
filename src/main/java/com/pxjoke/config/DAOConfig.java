@@ -68,8 +68,21 @@ public class DAOConfig {
     @Bean
     public OrdersDAO ordersDAO() throws SQLException {
         OrdersDAO ordersDAO = new OrdersDAO();
-        ordersDAO.setSearchQuery("select * from orders");
-        ordersDAO.setGetByIDQuery("select * from orders where id = :ORDER_ID");
+        ordersDAO.setSearchQuery("select orders.*, " +
+                "SUM(positions.price) sum, " +
+                "COUNT(positions.id) count " +
+                " from orders " +
+                "JOIN order_position positions " +
+                "ON positions.ORDER_ID = orders.id " +
+                "WHERE status <> 'cart' " +
+                "GROUP BY orders.id");
+        ordersDAO.setGetByIDQuery("select orders.*, " +
+                "SUM(positions.price) sum, " +
+                "COUNT(positions.id) count " +
+                "from orders " +
+                "JOIN order_position positions" +
+                " ON positions.ORDER_ID = orders.id " +
+                " where orders.id = :ORDER_ID");
         ordersDAO.setGetCartQuery("select orders.*, " +
                 "SUM(positions.price) sum, " +
                 "COUNT(positions.id) count " +
@@ -78,7 +91,15 @@ public class DAOConfig {
                 " ON positions.ORDER_ID = orders.id " +
                 " where status = 'cart' and USER_ID = :USER_ID");
         ordersDAO.setCloseCartQuery("UPDATE orders SET status = 'paid' where status = 'cart' and USER_ID = :USER_ID");
-        ordersDAO.setSearchForAccountQuery("select * from orders where USER_ID = :USER_ID");
+        ordersDAO.setSearchForAccountQuery("select orders.*, " +
+                "SUM(positions.price) sum, " +
+                "COUNT(positions.id) count " +
+                "from orders " +
+                "JOIN order_position positions " +
+                "ON positions.ORDER_ID = orders.id " +
+                "where USER_ID = :USER_ID " +
+                "AND orders.status <> 'cart' " +
+                "GROUP BY orders.id");
         ordersDAO.setCreateQuery("INSERT INTO orders (USER_ID, SALE_DATE, STATUS) " +
                   "VALUES (:USER_ID, :SALE_DATE, 'cart')");
         ordersDAO.setCreateCartQuery("INSERT INTO orders (USER_ID, SALE_DATE, STATUS) " +
