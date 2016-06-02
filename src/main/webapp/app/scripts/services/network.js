@@ -22,11 +22,10 @@ angular.module('rambleApp')
     var sendQuery = function (url, method, parameters, headers, onSuccess, onError) {
       getRequest(method, url, parameters, headers).then(
         function (response) {
-          if(onSuccess)
-            onSuccess(response.data.payload);
+          onSuccess(response.data.payload);
         },
         function (response) {
-          if(onError) onError(response);
+          onError(response);
         });
     };
 
@@ -37,5 +36,5 @@ angular.module('rambleApp')
       sendPost: function (url, parameters, onSuccess, onError) {
         sendQuery(url, "POST", parameters, {}, onSuccess, onError);
       }
-    }
+    };
   });

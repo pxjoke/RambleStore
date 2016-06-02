@@ -39,6 +39,11 @@ angular
         controller: 'SupportCtrl',
         controllerAs: 'support'
       })
+      .when('/items/:itemID', {
+        templateUrl: 'views/item.html',
+        controller: 'ItemCtrl',
+        controllerAs: 'item'
+      })
       .otherwise({
         redirectTo: '/'
       });

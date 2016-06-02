@@ -19,5 +19,5 @@ angular.module('rambleApp')
       },
       function (data) {
         console.log("Error, while loading data");
-      })
+      });
   });
