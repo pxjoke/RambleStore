@@ -8,9 +8,21 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('ItemCtrl', function (Items, $routeParams) {
+  .controller('ItemCtrl', function (Items, $routeParams, $location) {
     var that = this;
     that.itemID = $routeParams.itemID;
+
+    that.delete = function () {
+      Items.delete(that.itemID,
+        function (data) {
+          console.log("Item deleted");
+          $location.url("/");
+        },
+        function (data) {
+          console.log("Error while deleting item");
+          console.dir(data);
+        });
+    };
 
     Items.getItem(that.itemID, function (data) {
       that.item = data;

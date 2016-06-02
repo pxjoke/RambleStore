@@ -21,6 +21,9 @@ angular.module('rambleApp')
       },
       edit: function (itemID, item, onSucess, onError){
         return Network.sendPut("/items/" + itemID, item, onSucess, onError);
+      },
+      delete: function (itemID, onSucess, onError){
+        return Network.sendDelete("/items/" + itemID, {}, onSucess, onError);
       }
     };
   });
