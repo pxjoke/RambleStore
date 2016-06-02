@@ -8,10 +8,24 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('UserCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('UserCtrl', function (account) {
+    var that = this;
+
+    account.getOrders(
+      function (data) {
+        that.orders = data;
+      },
+      function (data) {
+        console.log("Error " + data);
+        console.dir(data);
+      });
+
+    account.getUser(
+      function (data) {
+        that.user = data;
+      },
+      function (data) {
+        console.log("Error " + data);
+        console.dir(data);
+      });
   });

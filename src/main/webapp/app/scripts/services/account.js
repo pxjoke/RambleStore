@@ -18,6 +18,12 @@ angular.module('rambleApp')
       },
       closeCart: function (onSuccess, onError) {
         return Network.sendPut("/account/cart", {}, onSuccess, onError);
+      },
+      getOrders: function (onSuccess, onError) {
+        return Network.sendGet("/account/orders", {}, onSuccess, onError);
+      },
+      getUser: function (onSuccess, onError) {
+        return Network.sendGet("/account", {}, onSuccess, onError);
       }
     };
   });

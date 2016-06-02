@@ -8,7 +8,7 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('CartCtrl', function (account, $route) {
+  .controller('CartCtrl', function (account, $location) {
     var that = this;
 
     account.getCartPositions(
@@ -33,7 +33,7 @@ angular.module('rambleApp')
       account.closeCart(
         function (data) {
           console.log("Cart is closed");
-          $route.reload();
+          $location.url("account");
         },
         function (data) {
           console.log("Error while closing cart");

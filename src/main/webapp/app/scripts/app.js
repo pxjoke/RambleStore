@@ -50,7 +50,7 @@ angular
         controller: 'UsersCtrl',
         controllerAs: 'users'
       })
-      .when('/user', {
+      .when('/account', {
         templateUrl: 'views/user.html',
         controller: 'UserCtrl',
         controllerAs: 'user'
