@@ -1,6 +1,7 @@
 package com.pxjoke.services;
 
 import com.pxjoke.dao.ItemsDAO;
+import com.pxjoke.dao.OrdersDAO;
 import com.pxjoke.dao.UsersDAO;
 import com.pxjoke.entities.ItemEntity;
 import com.pxjoke.entities.UserEntity;
@@ -15,6 +16,8 @@ public class UsersService extends AbstractService<UserEntity> {
 
     @Autowired
     private UsersDAO usersDAO;
+    @Autowired
+    private OrdersDAO ordersDAO;
 
     public final List<UserEntity> search(){
         return usersDAO.search();
@@ -46,13 +49,15 @@ public class UsersService extends AbstractService<UserEntity> {
     }
 
     public final Boolean updateForAccount(UserEntity user) {
-        Long id = new Long(1);
+        final Long id = Session.userID;
 
         return usersDAO.update(id, user);
     }
 
     public final Long create(UserEntity user) {
-        return usersDAO.create(user);
+        final Long userID = usersDAO.create(user);
+        ordersDAO.createCart(userID);
+        return userID;
     }
 
 
