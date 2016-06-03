@@ -17,6 +17,7 @@ angular.module('rambleApp')
       function (data) {
         if(data){
           $cookies.putObject('RmUser', data);
+          console.dir($cookies.getObject('RmUser'));
           $rootScope.rootUser = data;
           $location.url("/account");
           return;

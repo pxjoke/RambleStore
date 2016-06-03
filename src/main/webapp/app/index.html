@@ -45,7 +45,7 @@
               <a ng-href="#/cart" ng-if="rootUser">Cart</a>
             </li>
             <li>
-              <a ng-href="#/users" ng-if="rootUser && rootUser.role === 'admin'">Users</a>
+              <a ng-href="#/users" ng-if="rootUser && rootUser['role'] === 'admin'">Users</a>
             </li>
             <li>
               <a ng-href="#/logout" ng-if="rootUser">Logout</a>

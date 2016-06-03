@@ -14,10 +14,10 @@ angular.module('rambleApp')
 
     isAuth();
     function isAuth() {
-      if($cookies.get("RmUser")){
-        $rootScope.rootUser = $cookies.get("RmUser");
+      if($cookies.getObject("RmUser")){
+        $rootScope.rootUser = $cookies.getObject("RmUser");
       }
-      if(!$cookies.get("RmUser")){
+      if(!$cookies.getObject("RmUser")){
         $location.url("/");
       }
     }
