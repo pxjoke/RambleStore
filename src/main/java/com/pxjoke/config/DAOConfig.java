@@ -10,7 +10,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
@@ -134,7 +133,7 @@ public class DAOConfig {
         return orderPositionsDAO;
     }
 
-    @Bean(destroyMethod = "shutdown")
+    @Bean(destroyMethod = "shutdown", name="dataSource")
     public EmbeddedDatabase dataSource() {
         return new EmbeddedDatabaseBuilder().
                 setType(EmbeddedDatabaseType.H2).
