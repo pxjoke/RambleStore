@@ -8,10 +8,20 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('ItemCtrl', function (Items, $routeParams, $location) {
+  .controller('ItemCtrl', function (Items, $routeParams, $location, $rootScope, $cookies) {
     var that = this;
     that.itemID = $routeParams.itemID;
 
+    isAuth();
+    function isAuth() {
+      if($cookies.get("RmUser")){
+        $rootScope.rootUser = $cookies.get("RmUser");
+      }
+      if(!$cookies.get("RmUser")){
+        $location.url("/");
+      }
+    }
+    
     that.delete = function () {
       Items.delete(that.itemID,
         function (data) {

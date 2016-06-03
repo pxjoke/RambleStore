@@ -8,13 +8,26 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('UsersCtrl', function (Users) {
+  .controller('UsersCtrl', function (Users, $route, $location, $rootScope, $cookies) {
     var that = this;
+
+    isAuth();
+    function isAuth() {
+      if($cookies.get("RmUser")){
+        $rootScope.rootUser = $cookies.get("RmUser");
+      }
+      if(!$cookies.get("RmUser") || $cookies.get("RmUser").role !== 'admin'){
+        $location.url("/");
+      }
+    }
+    
     that.deleteUser = function (userID) {
       Users.deleteUser(userID, function (data) {
         console.log("User " + userID + "deleted!");
+        $route.reload();
       },
       function (data) {
+        
         console.log("Error while deleting user.")
       });
     };

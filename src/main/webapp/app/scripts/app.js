@@ -80,6 +80,11 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/logout', {
+        templateUrl: 'views/logout.html',
+        controller: 'LogoutCtrl',
+        controllerAs: 'logout'
+      })
       .otherwise({
         redirectTo: '/'
       });

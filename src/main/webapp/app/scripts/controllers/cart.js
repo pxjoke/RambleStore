@@ -8,8 +8,13 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('CartCtrl', function (account, $location) {
+  .controller('CartCtrl', function (account, $location, $cookies) {
     var that = this;
+
+    isAuth();
+    function isAuth() {
+      if(!$cookies.get("RmUser")) $location.url("/");
+    }
 
     account.getCartPositions(
       function (data) {

@@ -8,12 +8,22 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('EditItemCtrl', function (Items, $routeParams) {
+  .controller('EditItemCtrl', function (Items, $routeParams, $cookies, $route) {
 
     var that = this;
     that.item = {};
     that.itemID = $routeParams.itemID;
 
+    isAuth();
+    function isAuth() {
+      if($cookies.get("RmUser")){
+        $rootScope.rootUser = $cookies.get("RmUser");
+      }
+      if(!$cookies.get("RmUser") || $cookies.get("RmUser").role !== 'admin'){
+        $location.url("/");
+      }
+    }
+    
     Items.getItem(that.itemID,
       function (data) {
         that.item = data;

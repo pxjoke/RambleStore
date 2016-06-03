@@ -39,13 +39,22 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
-              <a ng-href="#/account">Account</a>
+              <a ng-href="#/account" ng-if="rootUser">Account</a>
             </li>
             <li>
-              <a ng-href="#/cart">Cart</a>
+              <a ng-href="#/cart" ng-if="rootUser">Cart</a>
             </li>
             <li>
-              <a ng-href="#/users">Users</a>
+              <a ng-href="#/users" ng-if="rootUser && rootUser.role === 'admin'">Users</a>
+            </li>
+            <li>
+              <a ng-href="#/logout" ng-if="rootUser">Logout</a>
+            </li>
+            <li>
+              <a ng-href="#/login" ng-if="!rootUser">Login</a>
+            </li>
+            <li>
+              <a ng-href="#/register" ng-if="!rootUser">Register</a>
             </li>
           </ul>
         </div>
@@ -110,6 +119,8 @@
         <script src="scripts/services/account.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/register.js"></script>
+        <script src="scripts/controllers/header.js"></script>
+        <script src="scripts/controllers/logout.js"></script>
         <!-- endbuild -->
 </body>
 </html>

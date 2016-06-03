@@ -8,8 +8,17 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('UserCtrl', function (account) {
+  .controller('UserCtrl', function (account, $cookies, $rootScope, $location) {
     var that = this;
+    isAuth();
+    function isAuth() {
+      if($cookies.get("RmUser")){
+        $rootScope.rootUser = $cookies.get("RmUser");
+      }
+      if(!$cookies.get("RmUser")){
+        $location.url("/");
+      }
+    }
 
     account.getOrders(
       function (data) {

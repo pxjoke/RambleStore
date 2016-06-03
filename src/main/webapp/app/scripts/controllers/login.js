@@ -8,10 +8,23 @@
  * Controller of the rambleApp
  */
 angular.module('rambleApp')
-  .controller('LoginCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('LoginCtrl', function (Users, $location, $cookies, $rootScope) {
+    var that = this;
+    that.user = {};
+
+    that.login = function(){
+      Users.login(that.user,
+      function (data) {
+        if(data){
+          $cookies.putObject('RmUser', data);
+          $rootScope.rootUser = data;
+          $location.url("/account");
+          return;
+        }
+        alert("Wrong email/password!");
+      },
+      function (data) {
+        console.log("Error while login");
+      });
+    }
   });
